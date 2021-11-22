@@ -9,9 +9,8 @@ import CitiesList from '../../components/CitiesList';
 import Loading from '../../components/Loading';
 import WeAre from '../../components/WeAre';
 
-// Array temporal con ciudades
-// Más adelante se van a traer de la base de datos
-
+import Modal from '../../components/Modal';
+import AddCittyForm from '../../components/addcitty/AddCittyForm';
 
 const HomeScreen = () => {
 
@@ -19,6 +18,11 @@ const HomeScreen = () => {
     const [filteredCities, setFilteredCities] = useState([]);
     const [loadingCities, setLoadingCities] = useState(false);
     const [isModalVisible, setIsModalVisible] = useState(false);
+
+    const [renderComponent, setRenderComponent] = useState(null);
+    const [showModal, setShowModal] = useState(false);
+    const [locationCity, setLocationCity] = useState(null);
+
 
     useEffect(() => {
         // Hace un fetch a firestore de las ciudades guardadas
@@ -103,9 +107,24 @@ const HomeScreen = () => {
                     color="white"
                     />
                 }
-                onPress={() => console.log(cities)}
+                onPress={() => { 
+                    setRenderComponent(
+                        <AddCittyForm 
+                            setShowModal={setShowModal}
+                            locationCity={locationCity}
+                            setLocationCity={setLocationCity}
+                        />
+                    );
+                    setShowModal(true);
+                }}
             />
             
+            {renderComponent && (
+                <Modal isVisible={showModal} setIsVisible={setShowModal}>
+                    {renderComponent}
+                </Modal>
+            )}
+
            
             <WeAre isVisible={isModalVisible} setIsVisible={setIsModalVisible} />
         </>
