@@ -6,12 +6,12 @@ export default function Map(props) {
   const location = {
     latitude,
     longitude,
-    latitudeDelta: 0.001,
-    longitudeDelta: 0.001,
+    latitudeDelta: 0.04,
+    longitudeDelta: 0.04,
   };
 
   return (
-    <MapView style={{ height: height, width: "100%" }} initialRegion={{...location, longitudeDelta: 0.4, latitudeDelta: 0.4}}>
+    <MapView style={{ height: height, width: "100%" }} initialRegion={location}>
       <MapView.Marker
         coordinate={{
           latitude: location.latitude,
