@@ -19,11 +19,13 @@ export default function ListCities({cities}) {
         ?
         <Text style={styles.noCitiesText}>No se encuentran ciudades con ese nombre.</Text>
         :
-        <FlatList
-          data={cities}
-          renderItem={(city) => <City city={city} navigation={navigation} />}
-          keyExtractor={(item, index) => index.toString()}
-        />
+        cities.map((city, i) => {
+          return (
+            <View key={city.id}>
+              <City city={city} navigation={navigation} />
+            </View>
+          )
+        })
       }
         
     </View>
@@ -32,7 +34,7 @@ export default function ListCities({cities}) {
 
 function City(props) {
   const { city, navigation } = props;
-  const { id, name } = city.item;
+  const { id, name } = city;
 
   const showCity = () => {
     navigation.navigate("city", { id, name });

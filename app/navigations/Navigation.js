@@ -4,7 +4,6 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Home from "../screens/Home/Home";
 import City from "../screens/Cities/City";
 import Search from "../screens/Search";
-import { StyleSheet, Text, View } from "react-native";
 
 export default function Navigation() {
   const Stack = createNativeStackNavigator();
@@ -16,15 +15,7 @@ export default function Navigation() {
           name="home"
           component={Home}
           options={{
-            title: "NOMBRE DE LA APP",
-
-            // DESCOMENTAR EL CÓDIGO DE ABAJO PARA AGREGAR ESTILOS PERSONALIZADOS A LA BARRA DE ARRIBA
-
-            // headerTitle: () => (
-            //   <View style={styles.headerBar}>
-            //     <Text>Hola</Text>
-            //   </View>
-            // )
+            title: "Ice Cream Weather",
           }}
         />
         <Stack.Screen name="city" component={City} />
@@ -33,7 +24,3 @@ export default function Navigation() {
     </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  headerBar: {},
-});
