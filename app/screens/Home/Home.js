@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, ScrollView, StyleSheet } from "react-native";
 import { Icon } from "react-native-elements";
+import { useIsFocused } from "@react-navigation/core";
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import { firebaseApp } from '../../utils/firebase';
@@ -10,7 +11,6 @@ import AddCityForm from "../../components/Cities/AddCityForm";
 import Loading from '../../components/Loading';
 import { Input } from "react-native-elements/dist/input/Input";
 import ListCities from "../../components/Cities/ListCities";
-import { useIsFocused } from "@react-navigation/core";
 const db = firebase.firestore(firebaseApp);
 
 export default function Home() {

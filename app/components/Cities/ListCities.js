@@ -3,11 +3,9 @@ import {
   StyleSheet,
   Text,
   View,
-  FlatList,
   TouchableOpacity,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { ListItem } from "react-native-elements/dist/list/ListItem";
 
 export default function ListCities({cities}) {
   const navigation = useNavigation();

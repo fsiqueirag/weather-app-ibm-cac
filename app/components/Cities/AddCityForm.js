@@ -9,17 +9,19 @@ import {
 import { Input, Button } from "react-native-elements";
 import MapView from "react-native-maps";
 import * as Location from "expo-location";
-
 import { firebaseApp } from "../../utils/firebase";
 import firebase from "firebase/app";
 import "firebase/firestore";
+import Loading from "../Loading";
 
 const db = firebase.firestore(firebaseApp);
 
 export default function AddCityForm(props) {
   const { setShowModal, setLocationCity } = props;
+
   const [location, setLocation] = useState(null);
   const [cityName, setCityName] = useState("");
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -52,9 +54,10 @@ export default function AddCityForm(props) {
         longitude: location.longitude,
       })
     );
+
   };
 
-  const onSubmit = () => {
+  const onSubmit = async () => {
     if (!cityName) {
       ToastAndroid.show(
         "Ingrese el nombre del lugar",
@@ -62,8 +65,11 @@ export default function AddCityForm(props) {
         ToastAndroid.CENTER
       );
     } else {
+      setLoading(true);
       setLocationCity(location);
-      saveUbication().then(() => setShowModal(false));
+      await saveUbication();
+      setLoading(false);
+      setShowModal(false);
     }
   };
 
@@ -120,6 +126,12 @@ export default function AddCityForm(props) {
           </View>
         </>
       )}
+
+    {
+      loading
+      &&
+      <Loading isVisible={loading} text='Agregando ciudad' />
+    }
     </View>
   );
 }

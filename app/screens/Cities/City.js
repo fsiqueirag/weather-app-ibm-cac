@@ -17,6 +17,7 @@ export default function City(props) {
   const { navigation, route } = props;
   const { id, name } = route.params;
   const [city, setCity] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     navigation.setOptions({ title: name });
@@ -44,22 +45,30 @@ export default function City(props) {
       <View style={{ marginHorizontal: 5 }}>
         <Map name={city,name} latitude={city.latitude} longitude={city.longitude} height={250} />
       </View>
-      <DeleteCity id={city.id} navigation={navigation} />
+      <DeleteCity id={city.id} navigation={navigation} setLoading={setLoading} />
+
+      {
+        loading
+        &&
+        <Loading isVisible={loading} text='Eliminando ciudad' />
+      }
     </ScrollView>
   );
 }
 
 
 function DeleteCity(props) {
-  const { id, navigation } = props;
+  const { id, navigation, setLoading } = props;
   const [showModal, setShowModal] = useState(false);
   const [renderComponent, setRenderComponent] = useState(null);
 
   const removeCity = async () => {
+    setLoading(true);
     db.collection("cities")
       .doc(id)
       .delete()
       .then(() => {
+        setLoading(false);
         navigation.navigate("home");
       })
       .catch(() => {

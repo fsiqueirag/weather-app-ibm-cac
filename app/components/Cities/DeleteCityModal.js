@@ -1,8 +1,11 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Button } from 'react-native-elements/dist/buttons/Button';
+import Loading from '../Loading';
 
 const DeleteCityModal = ({setShowModal, removeCity}) => {
+
+
     return (
         <View>
             <Text style={styles.deleteDescription}>¿Estás seguro de querer eliminar esta ciudad?</Text>
