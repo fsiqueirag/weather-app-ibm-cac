@@ -38,6 +38,13 @@ export default function About({ isVisible, setIsVisible }) {
       </Text>
       <Text
         style={styles.links}
+        onPress={() => Linking.openURL("https://docs.expo.dev/")}
+      >
+        - EXPO-CLI
+      </Text>
+      <Text
+        style={styles.links}
+
         onPress={() => Linking.openURL("https://firebase.google.com/")}
       >
         - Firebase

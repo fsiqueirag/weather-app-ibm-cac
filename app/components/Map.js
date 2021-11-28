@@ -6,8 +6,8 @@ export default function Map(props) {
   const location = {
     latitude,
     longitude,
-    latitudeDelta: 0.001,
-    longitudeDelta: 0.001,
+    latitudeDelta: 0.04,
+    longitudeDelta: 0.04,
   };
 
   return (
