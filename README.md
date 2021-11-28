@@ -29,7 +29,7 @@ Observa el [modelo de persona](https://cutt.ly/4T1Zdgk) para el cual fue diseña
 4. Aparecerá el menú para ejecutar la aplicación (METRO), seleccionamos la opción para abrir la aplicación:
 > run on Android device / emulator  o scanee el código QR en su dispositivo  
  
-## Como usarlo
+## Cómo usarlo
 
 Vea este [video](https://prezi.com/v/ulze_1oqqqhs/wheater-app-paper-prototype/) para saber cómo usarlo.
 
